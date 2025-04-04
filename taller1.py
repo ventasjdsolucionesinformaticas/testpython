@@ -1,0 +1,6 @@
+xo = float(input())
+vo = float(input())
+a = float(input())
+t = float(input())
+expresion= ((xo+vo)*t)+((a*t**2))
+print(expresion)

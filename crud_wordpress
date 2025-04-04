@@ -1,0 +1,97 @@
+#pip install requests
+
+import requests
+import json
+
+# Configura tu URL de WooCommerce y las claves de API
+url = "https://www.tenislaser.com/wp-json/wc/v3/products"
+consumer_key = "ck_f7f83074fa299873a03b9367b9797219b3756fcc"
+consumer_secret = "cs_e2837899dbeeec18ed567a8f4bcee02099d4ad74"
+
+# Autenticación básica
+auth = (consumer_key, consumer_secret)
+headers = {"Content-Type": "application/json"}
+#-------------------------------------------------------
+"""
+def create_product():
+    product_data = {
+        "name": "Nuevo Producto",
+        "type": "simple",
+        "regular_price": "19.99",
+        "description": "Este es un nuevo producto",
+        "categories": [{"id": 9}],
+        "images": [
+            {
+                "src": "https://tu-sitio.com/wp-content/uploads/imagen.jpg"
+            }
+        ]
+    }
+    
+    response = requests.post(url, auth=auth, headers=headers, data=json.dumps(product_data))
+    
+    if response.status_code == 201:
+        print("Producto creado exitosamente")
+        print(response.json())
+    else:
+        print("Error al crear el producto:", response.text)
+
+create_product()
+#---------------------------------------------------------------
+"""
+def get_products():
+    response = requests.get(url, auth=auth)
+    
+    if response.status_code == 200:
+        print("Productos obtenidos exitosamente")
+        print(response.json())  # Devuelve una lista de productos
+    else:
+        print("Error al obtener productos:", response.text)
+
+get_products()
+#-----------------------------------------------------------
+"""
+def get_product(product_id):
+    response = requests.get(f"{url}/{product_id}", auth=auth)
+    
+    if response.status_code == 200:
+        print("Producto obtenido exitosamente")
+        print(response.json())  # Devuelve los detalles del producto
+    else:
+        print("Error al obtener el producto:", response.text)
+
+get_product(123)  # Reemplaza 123 con el ID de tu producto
+-----------------------------------------------------
+def update_product(product_id):
+    product_data = {
+        "name": "Producto Actualizado",
+        "regular_price": "24.99",
+        "stock_quantity": 30
+    }
+    
+    response = requests.put(f"{url}/{product_id}", auth=auth, headers=headers, data=json.dumps(product_data))
+    
+    if response.status_code == 200:
+        print("Producto actualizado exitosamente")
+        print(response.json())
+    else:
+        print("Error al actualizar el producto:", response.text)
+
+update_product(123)  # Reemplaza 123 con el ID de tu producto
+--------------------------------------------------
+def delete_product(product_id):
+    response = requests.delete(f"{url}/{product_id}", auth=auth)
+    
+    if response.status_code == 200:
+        print("Producto eliminado exitosamente")
+    else:
+        print("Error al eliminar el producto:", response.text)
+
+delete_product(123)  # Reemplaza 123 con el ID de tu producto
+-----------------------------------------------
+Resumen de los Métodos CRUD:
+Crear: POST → /wp-json/wc/v3/products
+Leer: GET → /wp-json/wc/v3/products/{product_id} o /wp-json/wc/v3/products
+Actualizar: PUT → /wp-json/wc/v3/products/{product_id}
+Eliminar: DELETE → /wp-json/wc/v3/products/{product_id}
+-------------------------------------------
+"""
